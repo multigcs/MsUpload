@@ -12,6 +12,7 @@ $wgExtensionCredits['parserhook'][] = array(
 $wgResourceModules['ext.MsUpload'] = array(
 	'scripts' => array(
 		'plupload/plupload.full.min.js',
+		'md5.js',
 		'MsUpload.js'
 	),
 	'dependencies' => array('jquery.ui.progressbar', 'mediawiki.toolbar'),

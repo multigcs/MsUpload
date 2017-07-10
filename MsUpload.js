@@ -431,6 +431,9 @@ window.createMsUploader = function( wikiEditor ) {
 					}, 'json' );
 				}
 				$( '<a>' ).text( mw.msg( 'msu-insert-link' ) ).click( function () {
+					if (typeof CKEDITOR.instances.wpTextbox1.insertHtml === "function") {
+						CKEDITOR.instances.wpTextbox1.insertHtml('<p><a _fcknotitle="true" data-cke-saved-href=":File%3A' + file.name + '" href=":File%3A' + file.name + '">:File:' + file.name + '</a><br type="_moz"></p>')
+					}
 					if ( msuVars.useMsLinks === true ) {
 						mw.toolbar.insertTags( '{{#l:' + file.name + '}}', '', '', '' ); // Insert link
 					} else {
@@ -444,6 +447,13 @@ window.createMsUploader = function( wikiEditor ) {
 					}
 					$( '<span>' ).text( ' | ' ).appendTo( file.li );
 					$( '<a>' ).text( mw.msg('msu-insert-picture' ) ).click( function () {
+						if (typeof CKEDITOR.instances.wpTextbox1.insertHtml === "function") {
+							mdhash = md5(file.name.replace(/ /g, "_"));
+							var mdf = mdhash.substring(0, 1);
+							var mdfs = mdhash.substring(0, 2);
+							var fileurl = mdf + '/' + mdfs + '/' + file.name.replace(/ /g, "_");
+							CKEDITOR.instances.wpTextbox1.insertHtml('<p><img _cke_saved_src="' + file.name + '" _fck_mw_filename="' + file.name + '" src="images/' + fileurl + '" width="400" ><br type="_moz"></p>')
+						}
 						mw.toolbar.insertTags( '[[File:' + file.name + msuVars.imgParams + ']]', '', '', '' );
 					}).appendTo( file.li );
 				} else if ( file.group === 'mov' ) {

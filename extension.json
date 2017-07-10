@@ -22,6 +22,7 @@
 		"ext.MsUpload": {
 			"scripts": [
 				"plupload/plupload.full.min.js",
+				"md5.js",
 				"MsUpload.js"
 			],
 			"dependencies": "jquery.ui.progressbar",
